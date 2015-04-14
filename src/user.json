@@ -1,0 +1,25 @@
+{
+	"uid" : "15",
+	"name" : "test",
+	"pass" : "1a1dc91c907325c69271ddf0c944bc72",
+	"mail" : "test@test.com",
+	"mode" : "0",
+	"sort" : "0",
+	"threshold" : "0",
+	"theme" : "",
+	"signature" : "",
+	"signature_format" : "0",
+	"created" : "1294793391",
+	"access" : "1294793391",
+	"login" : "0",
+	"status" : "1",
+	"timezone" : "-25200",
+	"language" : "",
+	"picture" : "",
+	"init" : "test@test.com",
+	"data" : "a:0:{}",
+	"roles" : {
+		"2" : "authenticated user"
+	},
+	"password" : "pass"
+}
