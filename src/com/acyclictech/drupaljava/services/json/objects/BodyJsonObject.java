@@ -1,6 +1,6 @@
-package com.acyclictech.drupaljava.services.json;
+package com.acyclictech.drupaljava.services.json.objects;
 
-public class BodyJsonObject {
+public class BodyJsonObject extends BaseJsonObject {
 	/* body: {
 	"und" : [{
 			"value" : "/usr/share/drupal7/modules\r\n\r\nModules:\r\nctools\r\nlibraries\r\nservices\r\nrest-service\r\n\r\ncreate rest service\r\ntest url: http://10.0.2.15/drupal7/rest/node.json",

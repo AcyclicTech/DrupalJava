@@ -1,4 +1,4 @@
-package com.acyclictech.drupaljava.services.json;
+package com.acyclictech.drupaljava.services.json.objects;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -7,7 +7,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class NodeListJsonObject {
+import com.acyclictech.drupaljava.services.json.JsonUtilities;
+import com.acyclictech.drupaljava.services.json.objects.BaseJsonObject;
+
+public class NodeListJsonObject extends BaseJsonObject{
 	public static final String NID = "nid";
 	public static final String VID = "vid";
 	public static final String TYPE = "type";

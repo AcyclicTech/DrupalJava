@@ -1,6 +1,8 @@
-package com.acyclictech.drupaljava.services.json;
+package com.acyclictech.drupaljava.services.json.objects;
 
-public class CommentJsonObject {
+import org.json.JSONException;
+
+public class CommentJsonObject extends BaseJsonObject {
 	public static final String CID = "cid";
 	public static final String PID = "pid";
 	public static final String NID = "nid";
@@ -15,5 +17,17 @@ public class CommentJsonObject {
 	public static final String NAME = "name";
 	public static final String MAIL = "mail";
 	public static final String HOMEPAGE = "homepage";
-
+	
+	public void setCid(String cid){
+		try {
+			jsonObj.put(CID, cid);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public String getCid(){
+		return jsonObj.optString(CID, "");
+	}
 }
