@@ -8,7 +8,17 @@ public class BaseJsonObject {
 	protected JSONObject jsonObj;
 	
 	public String toString(){
-		return jsonObj.toString();
+		try {
+			return jsonObj.toString(4);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public JSONObject getJsonObject(){
+		return jsonObj;
 	}
 	
 	public void build(String objString){
