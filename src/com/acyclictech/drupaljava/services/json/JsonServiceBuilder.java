@@ -77,8 +77,22 @@ public class JsonServiceBuilder {
 
 	}
 
-	private void doGet() {
-
+	private void doGet(JSONObject obj) {
+		try {
+			String type = "application/json";
+			String encodedData = URLEncoder.encode(obj.toString());
+			URL u = new URL("http://www.example.com/page.php");
+			HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-Type", type);
+			OutputStream os = conn.getOutputStream();
+			os.write(encodedData.getBytes());
+			InputStream response = conn.getInputStream();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void doPost(JSONObject obj) {
@@ -99,11 +113,37 @@ public class JsonServiceBuilder {
 		}
 	}
 
-	private void doPut() {
-
+	private void doPut(JSONObject obj) {
+		try {
+			String type = "application/json";
+			String encodedData = URLEncoder.encode(obj.toString());
+			URL u = new URL("http://www.example.com/page.php");
+			HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("PUT");
+			conn.setRequestProperty("Content-Type", type);
+			OutputStream os = conn.getOutputStream();
+			os.write(encodedData.getBytes());
+			InputStream response = conn.getInputStream();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
-	private void doDelete() {
-
-	}
-}
+	private void doDelete(JSONObject obj) {
+		try {
+			String type = "application/json";
+			String encodedData = URLEncoder.encode(obj.toString());
+			URL u = new URL("http://www.example.com/page.php");
+			HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("DELETE");
+			conn.setRequestProperty("Content-Type", type);
+			OutputStream os = conn.getOutputStream();
+			os.write(encodedData.getBytes());
+			InputStream response = conn.getInputStream();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}}
