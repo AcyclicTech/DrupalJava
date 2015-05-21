@@ -111,65 +111,87 @@ public class JsonServiceBuilder {
 	}
 
 	private String doGet(String path, JSONObject obj, UserJsonObject userObject) {
-		return null;
-	}
-
-	private String doPost(String path, JSONObject obj, UserJsonObject userObject) {
+		String jsonResponse = null;
 		try {
 			String type = "application/json";
 			String encodedData = URLEncoder.encode(obj.toString());
-			URL u = new URL("http://www.example.com/page.php");
+			URL u = new URL(baseUrl + path);
+			HttpURLConnection conn = (HttpURLConnection) u.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-Type", type);
+			OutputStream os = conn.getOutputStream();
+			os.write(encodedData.getBytes());
+			//InputStream response = conn.getInputStream();
+			jsonResponse = conn.getResponseMessage();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonResponse;
+	}
+
+	private String doPost(String path, JSONObject obj, UserJsonObject userObject) {
+		String jsonResponse = null;
+		try {
+			String type = "application/json";
+			String encodedData = URLEncoder.encode(obj.toString());
+			URL u = new URL(baseUrl + path);
 			HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("POST");
 			conn.setRequestProperty("Content-Type", type);
 			OutputStream os = conn.getOutputStream();
 			os.write(encodedData.getBytes());
-			InputStream response = conn.getInputStream();
+			//InputStream response = conn.getInputStream();
+			jsonResponse = conn.getResponseMessage();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return jsonResponse;
 	}
 
 	private String doPut(String path, JSONObject obj, UserJsonObject userObject) {
+		String jsonResponse = null;
 		try {
 			String type = "application/json";
 			String encodedData = URLEncoder.encode(obj.toString());
-			URL u = new URL("http://www.example.com/page.php");
+			URL u = new URL(baseUrl + path);
 			HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("PUT");
 			conn.setRequestProperty("Content-Type", type);
 			OutputStream os = conn.getOutputStream();
 			os.write(encodedData.getBytes());
-			InputStream response = conn.getInputStream();
+			//InputStream response = conn.getInputStream();
+			jsonResponse = conn.getResponseMessage();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
-
+		return jsonResponse;
 	}
 
 	private String doDelete(String path, JSONObject obj, UserJsonObject userObject) {
+		String jsonResponse = null;
 		try {
 			String type = "application/json";
 			String encodedData = URLEncoder.encode(obj.toString());
-			URL u = new URL("http://www.example.com/page.php");
+			URL u = new URL(baseUrl + path);
 			HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("DELETE");
 			conn.setRequestProperty("Content-Type", type);
 			OutputStream os = conn.getOutputStream();
 			os.write(encodedData.getBytes());
-			InputStream response = conn.getInputStream();
+			//InputStream response = conn.getInputStream();
+			jsonResponse = conn.getResponseMessage();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null;
+		return jsonResponse;
 	}
 	
 	public static void main(String[] args) {
