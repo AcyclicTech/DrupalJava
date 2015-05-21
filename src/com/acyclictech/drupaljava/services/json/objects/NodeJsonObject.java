@@ -33,16 +33,12 @@ public class NodeJsonObject extends BaseJsonObject {
 	public static final String DATA = "data";
 	public static final String PATH = "path";
 
-	public NodeJsonObject(){
-		jsonObj = new JSONObject();
-	}
-	
 	public NodeJsonObject(String vid, String uid, String title, String log, String status, String comment,
 			String promote, String sticky, String nid, String type, String language, String created,
 			String changed, String tnid, String translate, String revisionTimeStamp, String revisionUid,
 			String cid ,String lastCommentTimeStamp, String lastCommentName, String lastCommentUid, String name,
 			String picture, String data, String path){
-		this();
+		super();
 		try{
 			jsonObj.put(VID, vid);
 			jsonObj.put(UID, uid);
@@ -73,6 +69,10 @@ public class NodeJsonObject extends BaseJsonObject {
 		}
 	}
 	
+	public NodeJsonObject(JSONObject obj) {
+		super(obj);
+	}
+
 	public void setVid(String vid){
 		try {
 			jsonObj.put(VID, vid);

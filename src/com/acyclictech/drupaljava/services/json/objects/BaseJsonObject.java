@@ -7,6 +7,15 @@ public class BaseJsonObject {
 
 	protected JSONObject jsonObj;
 	
+	public BaseJsonObject(){
+		jsonObj = new JSONObject();
+	}
+
+	public BaseJsonObject(JSONObject obj){
+		jsonObj = obj;
+	}
+
+	
 	public String toString(){
 		try {
 			return jsonObj.toString(4);

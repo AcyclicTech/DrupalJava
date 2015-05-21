@@ -63,6 +63,10 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
+	public UserJsonObject(JSONObject jsonObject) {
+		super(jsonObject);
+	}
+
 	public void setUid(String uid){
 		try {
 			jsonObj.put(UID, uid);
