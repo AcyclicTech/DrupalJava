@@ -48,6 +48,10 @@ public class CommentJsonObject extends BaseJsonObject {
 		}
 	}
 	
+	public CommentJsonObject(JSONObject jsonObject) {
+		super(jsonObject);
+	}
+
 	public void setCid(String cid){
 		try {
 			jsonObj.put(CID, cid);

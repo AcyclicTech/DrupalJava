@@ -63,7 +63,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public void setSessId(String sessId){
+	public UserJsonObject(JSONObject jsonObject) {
+		super(jsonObject);
+	}
+
+	public void setUid(String uid){
 		try {
 			jsonObj.put(UID, uid);
 		} catch (JSONException e) {
@@ -72,11 +76,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getUid(){
+		return jsonObj.optString(UID, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setName(String name){
 		try {
 			jsonObj.put(NAME, name);
 		} catch (JSONException e) {
@@ -85,11 +89,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getName(){
+		return jsonObj.optString(NAME, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setPassword(String pass){
 		try {
 			jsonObj.put(PASS, pass);
 		} catch (JSONException e) {
@@ -98,11 +102,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getPassword(){
+		return jsonObj.optString(PASS, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setMail(String mail){
 		try {
 			jsonObj.put(MAIL, mail);
 		} catch (JSONException e) {
@@ -111,11 +115,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getMail(){
+		return jsonObj.optString(MAIL, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setSort(String sort){
 		try {
 			jsonObj.put(SORT, sort);
 		} catch (JSONException e) {
@@ -124,11 +128,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getSort(){
+		return jsonObj.optString(SORT, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setThreshold(String threshold){
 		try {
 			jsonObj.put(THRESHOLD, threshold);
 		} catch (JSONException e) {
@@ -137,11 +141,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getThreshold(){
+		return jsonObj.optString(THRESHOLD, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setTheme(String theme){
 		try {
 			jsonObj.put(THEME, theme);
 		} catch (JSONException e) {
@@ -150,11 +154,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getTheme(){
+		return jsonObj.optString(THEME, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setSignature(String signature){
 		try {
 			jsonObj.put(SIGNATURE, signature);
 		} catch (JSONException e) {
@@ -163,11 +167,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getSignature(){
+		return jsonObj.optString(SIGNATURE, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setSignatureFormate(String signatureFormat){
 		try {
 			jsonObj.put(SIGNATURE_FORMAT, signatureFormat);
 		} catch (JSONException e) {
@@ -176,11 +180,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getSignatureFormate(){
+		return jsonObj.optString(SIGNATURE_FORMAT, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setCreated(String created){
 		try {
 			jsonObj.put(CREATED, created);
 		} catch (JSONException e) {
@@ -189,11 +193,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getCreated(){
+		return jsonObj.optString(CREATED, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setLastAccess(String access){
 		try {
 			jsonObj.put(ACCESS, access);
 		} catch (JSONException e) {
@@ -202,11 +206,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getLastAccess(){
+		return jsonObj.optString(ACCESS, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setLastLogin(String login){
 		try {
 			jsonObj.put(LOGIN, login);
 		} catch (JSONException e) {
@@ -215,11 +219,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getLastLogin(){
+		return jsonObj.optString(LOGIN, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setStatus(String status){
 		try {
 			jsonObj.put(STATUS, status);
 		} catch (JSONException e) {
@@ -228,11 +232,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getStatus(){
+		return jsonObj.optString(STATUS, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setTimeZone(String timezone){
 		try {
 			jsonObj.put(TIMEZONE, timezone);
 		} catch (JSONException e) {
@@ -241,11 +245,11 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getTimeZone(){
+		return jsonObj.optString(TIMEZONE, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setLanguage(String language){
 		try {
 			jsonObj.put(LANGUAGE, language);
 		} catch (JSONException e) {
@@ -254,72 +258,46 @@ public class UserJsonObject extends BaseJsonObject {
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
+	public String getLanguage(){
+		return jsonObj.optString(LANGUAGE, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setInit(String init){
 		try {
-			jsonObj.put(SESSID, sessId);
+			jsonObj.put(INIT, init);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
-	}
-	
-	public void setSessId(String sessId){
-		try {
-			jsonObj.put(SESSID, sessId);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public String getSessId(){
-		return jsonObj.optString(SESSID, "");
-	}
-	
-	public void setSessId(String sessId){
-		try {
-			jsonObj.put(INIT, sessId);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	public String getSessId(){
+	public String getInit(){
 		return jsonObj.optString(INIT, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setData(String data){
 		try {
-			jsonObj.put(DATA, sessId);
+			jsonObj.put(DATA, data);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public String getSessId(){
+	public String getData(){
 		return jsonObj.optString(DATA, "");
 	}
 	
-	public void setSessId(String sessId){
+	public void setRoles(String roles){
 		try {
-			jsonObj.put(ROLES, sessId);
+			jsonObj.put(ROLES, roles);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public String getSessId(){
+	public String getRoles(){
 		return jsonObj.optString(ROLES, "");
 	}
 }
