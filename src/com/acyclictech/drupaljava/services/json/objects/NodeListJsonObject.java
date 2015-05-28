@@ -37,6 +37,17 @@ public class NodeListJsonObject extends BaseJsonObject{
 	public void getNodes(List<NodeJsonObject> nodes){
 		this.nodeList = nodes;
 	}
+
+	@Override
+	public String toString() {
+		return "NodeListJsonObject [nodeList=" + nodeList + "]";
+	}
+
+	/**
+	 * curl -v -H 'Content-Type:application/x-www-form-urlencoded' -H 'X-CSRF-Token: H9-1mC-RJY6PG1b_svsWYEJZoxthrKcMQnHnYwEOtfQ' -X POST --data "username=jon&password=password" http://192.168.56.1/drupal7/rest/user/login.json
+	 * @param args
+	 */
+	
 //	//[{'nid':'2','vid':'2','type':'blog','language':'und','title':'Linux','uid':'1','status':'1','created':'1428289127','changed':'1428290484','comment':'2','promote':'1','sticky':'0','tnid':'0','translate':'0','uri':'http://192.168.56.1/drupal7/rest/node/2'},{'nid':'1','vid':'1','type':'blog','language':'und','title':'Page 1','uid':'1','status':'1','created':'1428287496','changed':'1428287496','comment':'2','promote':'1','sticky':'0','tnid':'0','translate':'0','uri':'http://192.168.56.1/drupal7/rest/node/1'}]
 //	public static Map<String, String> parseNodes(JSONArray jsonObj){
 //		Map<String, String> nodeList = new TreeMap<String, String>();

@@ -13,6 +13,10 @@ public class SessionJsonObject extends BaseJsonObject {
 	public SessionJsonObject(){
 		jsonObj = new JSONObject();
 	}
+
+	public SessionJsonObject(JSONObject userObj){
+		jsonObj = userObj;
+	}
 	
 	public SessionJsonObject(String sessid, String sessionName, UserJsonObject userObj){
 		this();
