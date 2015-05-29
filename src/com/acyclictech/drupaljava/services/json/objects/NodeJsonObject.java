@@ -1,5 +1,9 @@
 package com.acyclictech.drupaljava.services.json.objects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,6 +73,15 @@ public class NodeJsonObject extends BaseJsonObject {
 		}
 	}
 	
+	public List<String> getNames(){
+		List<String> names = Arrays.asList(new String[] { VID, UID, TITLE, LOG,
+				STATUS, COMMENT, PROMOTE, STICKY, NID, TYPE, LANGUAGE, CREATED,
+				CHANGED, TNID, TRANSLATE, REVISION_TIMESTAMP, REVISION_UID,
+				CID, LAST_COMMENT_TIMESTAMP, LAST_COMMENT_NAME,
+				LAST_COMMENT_UID, COMMENT_COUNT, NAME, PICTURE, DATA, PATH });
+		
+		return names;
+	}
 	public NodeJsonObject(JSONObject obj) {
 		super(obj);
 	}
