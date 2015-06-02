@@ -1,11 +1,52 @@
 package com.acyclictech.drupaljava.services.json.objects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class NodeJsonObject extends BaseJsonObject {
 
+	/**
+{
+    "body": {"und": [{
+        "format": "plain_text",
+        "safe_summary": "",
+        "safe_value": "<p>/usr/share/drupal7/modules<\/p>\n<p>Modules:<br />\nctools<br />\nlibraries<br />\nservices<br />\nrest-service<\/p>\n<p>create rest service<br />\ntest url: <a href=\"http://10.0.2.15/drupal7/rest/node.json\">http://10.0.2.15/drupal7/rest/node.json<\/a><\/p>\n",
+        "summary": "",
+        "value": "/usr/share/drupal7/modules\r\n\r\nModules:\r\nctools\r\nlibraries\r\nservices\r\nrest-service\r\n\r\ncreate rest service\r\ntest url: http://10.0.2.15/drupal7/rest/node.json"
+    }]},
+    "changed": "1428290484",
+    "cid": "0",
+    "comment": "2",
+    "comment_count": "0",
+    "created": "1428289127",
+    "data": "b:0;",
+    "language": "und",
+    "last_comment_name": null,
+    "last_comment_timestamp": "1428289127",
+    "last_comment_uid": "1",
+    "log": "",
+    "name": "jon",
+    "nid": "2",
+    "path": "http://192.168.56.1/drupal7/node/2",
+    "picture": "0",
+    "promote": "1",
+    "revision_timestamp": "1428290484",
+    "revision_uid": "1",
+    "status": "1",
+    "sticky": "0",
+    "title": "Linux",
+    "tnid": "0",
+    "translate": "0",
+    "type": "blog",
+    "uid": "1",
+    "vid": "2"
+}
+	 */
 	public static final String VID = "vid";
 	public static final String UID = "uid";
 	public static final String TITLE = "title";
@@ -69,6 +110,15 @@ public class NodeJsonObject extends BaseJsonObject {
 		}
 	}
 	
+	public List<String> getNames(){
+		List<String> names = Arrays.asList(new String[] { VID, UID, TITLE, LOG,
+				STATUS, COMMENT, PROMOTE, STICKY, NID, TYPE, LANGUAGE, CREATED,
+				CHANGED, TNID, TRANSLATE, REVISION_TIMESTAMP, REVISION_UID,
+				CID, LAST_COMMENT_TIMESTAMP, LAST_COMMENT_NAME,
+				LAST_COMMENT_UID, COMMENT_COUNT, NAME, PICTURE, DATA, PATH });
+		
+		return names;
+	}
 	public NodeJsonObject(JSONObject obj) {
 		super(obj);
 	}

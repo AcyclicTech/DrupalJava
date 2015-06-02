@@ -11,6 +11,41 @@ import org.json.JSONObject;
 
 import com.acyclictech.drupaljava.services.json.JsonUtilities;
 
+/**
+NodeListJsonObject [nodeList=[{
+    "changed": "1428290484",
+    "comment": "2",
+    "created": "1428289127",
+    "language": "und",
+    "nid": "2",
+    "promote": "1",
+    "status": "1",
+    "sticky": "0",
+    "title": "Linux",
+    "tnid": "0",
+    "translate": "0",
+    "type": "blog",
+    "uid": "1",
+    "uri": "http://192.168.56.1/drupal7/rest/node/2",
+    "vid": "2"
+}, {
+    "changed": "1428287496",
+    "comment": "2",
+    "created": "1428287496",
+    "language": "und",
+    "nid": "1",
+    "promote": "1",
+    "status": "1",
+    "sticky": "0",
+    "title": "Page 1",
+    "tnid": "0",
+    "translate": "0",
+    "type": "blog",
+    "uid": "1",
+    "uri": "http://192.168.56.1/drupal7/rest/node/1",
+    "vid": "1"
+}]]
+ */
 public class NodeListJsonObject extends BaseJsonObject{
 	public List<NodeJsonObject> nodeList = null;
 	private JSONArray jsonArray;
@@ -42,33 +77,4 @@ public class NodeListJsonObject extends BaseJsonObject{
 	public String toString() {
 		return "NodeListJsonObject [nodeList=" + nodeList + "]";
 	}
-
-	/**
-	 * curl -v -H 'Content-Type:application/x-www-form-urlencoded' -H 'X-CSRF-Token: H9-1mC-RJY6PG1b_svsWYEJZoxthrKcMQnHnYwEOtfQ' -X POST --data "username=jon&password=password" http://192.168.56.1/drupal7/rest/user/login.json
-	 * @param args
-	 */
-	
-//	//[{'nid':'2','vid':'2','type':'blog','language':'und','title':'Linux','uid':'1','status':'1','created':'1428289127','changed':'1428290484','comment':'2','promote':'1','sticky':'0','tnid':'0','translate':'0','uri':'http://192.168.56.1/drupal7/rest/node/2'},{'nid':'1','vid':'1','type':'blog','language':'und','title':'Page 1','uid':'1','status':'1','created':'1428287496','changed':'1428287496','comment':'2','promote':'1','sticky':'0','tnid':'0','translate':'0','uri':'http://192.168.56.1/drupal7/rest/node/1'}]
-//	public static Map<String, String> parseNodes(JSONArray jsonObj){
-//		Map<String, String> nodeList = new TreeMap<String, String>();
-//		for(int i = 0; i < jsonObj.length(); i++){
-//			try {
-//				JSONObject arrayObj = jsonObj.getJSONObject(i); 
-//				String nId = arrayObj.getString("nid");
-//				nodeList.put(nId, arrayObj.getString("title"));
-//			} catch (JSONException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//		return nodeList;
-//	}
-	
-	public static void main(String[] args) {
-		String testMessage = "[{'nid':'2','vid':'2','type':'blog','language':'und','title':'Linux','uid':'1','status':'1','created':'1428289127','changed':'1428290484','comment':'2','promote':'1','sticky':'0','tnid':'0','translate':'0','uri':'http://192.168.56.1/drupal7/rest/node/2'},{'nid':'1','vid':'1','type':'blog','language':'und','title':'Page 1','uid':'1','status':'1','created':'1428287496','changed':'1428287496','comment':'2','promote':'1','sticky':'0','tnid':'0','translate':'0','uri':'http://192.168.56.1/drupal7/rest/node/1'}]";
-		JSONArray jsonObj = JsonUtilities.parseArrayObj(testMessage);
-//		Map<String, String> nodes = NodeListJsonObject.parseNodes(jsonObj);
-//		System.out.println(nodes);
-	}
-
 }

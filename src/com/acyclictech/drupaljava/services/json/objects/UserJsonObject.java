@@ -10,8 +10,8 @@ public class UserJsonObject extends BaseJsonObject {
 	//"init":"kyle@workhabit.com","data":"a:0:{}","roles":{"2":"authenticated user"}}
 	
 	public static final String UID = "uid";
-	public static final String NAME = "name";
-	public static final String PASS = "pass";
+	public static final String NAME = "username";
+	public static final String PASS = "password";
 	public static final String MAIL = "mail";
 	public static final String MODE = "mode";
 	public static final String SORT = "sort";

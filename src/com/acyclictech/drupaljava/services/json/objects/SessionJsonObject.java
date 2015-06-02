@@ -5,7 +5,29 @@ import org.json.JSONObject;
 
 public class SessionJsonObject extends BaseJsonObject {
 
-//	{"sessid":"853c6c7f6eaa051724080dff202eeec0","session_name":"SESS8b1f176c338bbcc3922a56004cec3c41","user":{"uid":"1","name":"admin","pass":"1a1dc91c907325c69271ddf0c944bc72","mail":"kyle@workhabit.com","mode":"0","sort":"0","threshold":"0","theme":"","signature":"","signature_format":"0","created":"1286571725","access":"1294794381","login":1294794548,"status":"1","timezone":null,"language":"","picture":"","init":"kyle@workhabit.com","data":"a:0:{}","roles":{"2":"authenticated user"}}}
+	
+/**{"token":"6eS5kbUE0b1SKl9O4ZbWlNRoLXaoe0S3RObSNMmrWAE",
+	"session_name":"SESS8c4502931ff278cca5bc749acc34866c",
+	"sessid":"UdLpVYZwntkck4AK8j2BGb0NIVN3IEJIcTQSI4kFcWY",
+	"user":
+		{"uid":"1",
+		"mail":"jon@localhost.com",
+		"status":"1",
+		"theme":"",
+		"data":false,
+		"init":"jon@localhost.com",
+		"access":"1433247951",
+		"picture":"0",
+		"timezone":"America/Denver",
+		"created":"1422817623",
+		"roles":
+			{"2":"authenticated user"},
+		"name":"jon",
+		"login":1433248227,
+		"language":"",
+		"signature":"",
+		"signature_format":"plain_text"}}
+	*/
 	public static final String SESSID = "sessid";
 	public static final String SESSION_NAME = "session_name";
 	public static final String USER = "user";

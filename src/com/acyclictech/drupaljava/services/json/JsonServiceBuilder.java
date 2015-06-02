@@ -14,8 +14,6 @@ import java.util.Map.Entry;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import android.util.Base64;
-
 import com.acyclictech.drupaljava.services.json.objects.CommentJsonObject;
 import com.acyclictech.drupaljava.services.json.objects.NodeJsonObject;
 import com.acyclictech.drupaljava.services.json.objects.NodeListJsonObject;
@@ -23,6 +21,9 @@ import com.acyclictech.drupaljava.services.json.objects.SessionJsonObject;
 import com.acyclictech.drupaljava.services.json.objects.UserJsonObject;
 
 public class JsonServiceBuilder {
+	/**
+	 * curl -v -H 'Content-Type:application/x-www-form-urlencoded' -H 'X-CSRF-Token: H9-1mC-RJY6PG1b_svsWYEJZoxthrKcMQnHnYwEOtfQ' -X POST --data "username=jon&password=password" http://192.168.56.1/drupal7/rest/user/login.json
+	 */
 
 	private String baseUrl;
 	String TOKEN_HEADER = "X-CSRF-Token";
@@ -34,34 +35,34 @@ public class JsonServiceBuilder {
 		this.baseUrl = baseUrl;
 		this.restUrl = restUrl;
 
-		String jsonResponse = "H9-1mC-RJY6PG1b_svsWYEJZoxthrKcMQnHnYwEOtfQ";//doGet("/services/session/token", null, null);
+		String jsonResponse = doGet("/services/session/token", null, null);//"H9-1mC-RJY6PG1b_svsWYEJZoxthrKcMQnHnYwEOtfQ";
 		sessionId = jsonResponse;
 	}
 
 	// node CRUD + index
-	public NodeListJsonObject getNodeIndex(UserJsonObject userObject) {
+	public NodeListJsonObject getNodeIndex(SessionJsonObject userObject) {
 		String jsonResponse = doGet("/rest/node.json", null, userObject);
 		JSONArray jsonArray = JsonUtilities.parseArrayObj(jsonResponse);
 		NodeListJsonObject listObject = new NodeListJsonObject(jsonArray);
 		return listObject;
 	}
 
-	public NodeJsonObject getNode(NodeJsonObject node, UserJsonObject userObject) {
-		String jsonResponse = doGet("/rest", node.getJsonObject(), userObject);
+	public NodeJsonObject getNode(NodeJsonObject node, SessionJsonObject userObject) {
+		String jsonResponse = doGet("/rest/node/" + node.getNid() + ".json", node.getJsonObject(), userObject);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		NodeJsonObject nodeObject = new NodeJsonObject(jsonObject);
 		return nodeObject;
 
 	}
 
-	public NodeJsonObject createNode(NodeJsonObject node, UserJsonObject userObject) {
+	public NodeJsonObject createNode(NodeJsonObject node, SessionJsonObject userObject) {
 		String jsonResponse = doPost("/rest", node.getJsonObject(), userObject);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		NodeJsonObject nodeObject = new NodeJsonObject(jsonObject);
 		return nodeObject;
 	}
 
-	public NodeJsonObject deleteNode(NodeJsonObject node, UserJsonObject userObject) {
+	public NodeJsonObject deleteNode(NodeJsonObject node, SessionJsonObject userObject) {
 		String jsonResponse = doDelete("/rest", node.getJsonObject(), userObject);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		NodeJsonObject nodeObject = new NodeJsonObject(jsonObject);
@@ -69,21 +70,21 @@ public class JsonServiceBuilder {
 	}
 
 	// comment CRUD
-	public CommentJsonObject getCommentIndex(CommentJsonObject comment, UserJsonObject userObject) {
+	public CommentJsonObject getCommentIndex(CommentJsonObject comment, SessionJsonObject userObject) {
 		String jsonResponse = doGet("/rest", comment.getJsonObject(), userObject);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		CommentJsonObject nodeObject = new CommentJsonObject(jsonObject);
 		return nodeObject;
 	}
 
-	public CommentJsonObject createComment(CommentJsonObject comment, UserJsonObject userObject) {
+	public CommentJsonObject createComment(CommentJsonObject comment, SessionJsonObject userObject) {
 		String jsonResponse = doPost("/rest", comment.getJsonObject(), userObject);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		CommentJsonObject nodeObject = new CommentJsonObject(jsonObject);
 		return nodeObject;
 	}
 
-	public CommentJsonObject deleteComment(CommentJsonObject comment, UserJsonObject userObject) {
+	public CommentJsonObject deleteComment(CommentJsonObject comment, SessionJsonObject userObject) {
 		String jsonResponse = doDelete("/rest", comment.getJsonObject(), userObject);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		CommentJsonObject nodeObject = new CommentJsonObject(jsonObject);
@@ -91,25 +92,25 @@ public class JsonServiceBuilder {
 	}
 
 	// user CRUD
-	public void getUserIndex(UserJsonObject userObject) {
+	public void getUserIndex(SessionJsonObject userObject) {
 
 	}
 
-	public UserJsonObject getUser(String uid, UserJsonObject userObject) {
+	public UserJsonObject getUser(String uid, SessionJsonObject userObject) {
 		String jsonResponse = doGet("/rest", userObject.getJsonObject(), userObject);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		UserJsonObject nodeObject = new UserJsonObject(jsonObject);
 		return nodeObject;
 	}
 
-	public UserJsonObject createUser(UserJsonObject userObject) {
+	public UserJsonObject createUser(SessionJsonObject userObject) {
 		String jsonResponse = doPost("/rest", userObject.getJsonObject(), userObject);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		UserJsonObject nodeObject = new UserJsonObject(jsonObject);
 		return nodeObject;
 	}
 
-	public UserJsonObject deleteUser(UserJsonObject userObject) {
+	public UserJsonObject deleteUser(SessionJsonObject userObject) {
 		String jsonResponse = doDelete("/rest", userObject.getJsonObject(), userObject);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		UserJsonObject nodeObject = new UserJsonObject(jsonObject);
@@ -118,11 +119,9 @@ public class JsonServiceBuilder {
 
 	// login
 	public SessionJsonObject login(UserJsonObject userObject) {
-		//String jsonResponse = doPost("/user/login?name="+userObject.getName() + "&pass=" + userObject.getPassword(), userObject.getJsonObject(), null);
-		String jsonResponse = doPostMap("/rest/user/login.json", userObject.getMap());
+		String jsonResponse = doPostMap("/rest/user/login.json", userObject.getMap(), null);
 		JSONObject jsonObject = JsonUtilities.parseObj(jsonResponse);
 		SessionJsonObject nodeObject = new SessionJsonObject(jsonObject);
-		System.out.println(nodeObject);
 		return nodeObject;
 	}
 
@@ -131,19 +130,22 @@ public class JsonServiceBuilder {
 		return null;
 	}
 
-	private String doGet(String path, JSONObject obj, UserJsonObject userObject) {
+	private String doGet(String path, JSONObject obj, SessionJsonObject userObject) {
 		String jsonResponse = null;
 		try {
 			String type = "application/json";
 			String encodedData = null;
 			if(userObject != null){
-				encodedData = URLEncoder.encode(obj.toString());
+				//encodedData = URLEncoder.encode(obj.toString());
 			}
 			URL u = new URL(baseUrl + path);
 			HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 			conn.setDoOutput(true);
 			conn.setRequestMethod("GET");
 			conn.setRequestProperty("Content-Type", type);
+			if(sessionId != null){
+				conn.setRequestProperty(TOKEN_HEADER, sessionId.replaceAll("\\n", ""));
+			}
 			if(encodedData != null){
 				OutputStream os = conn.getOutputStream();
 				os.write(encodedData.getBytes());
@@ -156,7 +158,7 @@ public class JsonServiceBuilder {
 		return jsonResponse;
 	}
 
-	private String doPostMap(String path, Map<String, String> params) {
+	private String doPostMap(String path, Map<String, String> params, SessionJsonObject userObject) {
 		String jsonResponse = null;
 		try {
 			String type = "application/x-www-form-urlencoded";
@@ -189,7 +191,7 @@ public class JsonServiceBuilder {
 		return jsonResponse;
 	}
 
-	private String doPost(String path, JSONObject obj, UserJsonObject userObject) {
+	private String doPost(String path, JSONObject obj, SessionJsonObject userObject) {
 		String jsonResponse = null;
 		try {
 			String type = "application/json";
@@ -216,7 +218,7 @@ public class JsonServiceBuilder {
 		return jsonResponse;
 	}
 
-	private String doPut(String path, JSONObject obj, UserJsonObject userObject) {
+	private String doPut(String path, JSONObject obj, SessionJsonObject userObject) {
 		String jsonResponse = null;
 		try {
 			String type = "application/json";
@@ -226,6 +228,7 @@ public class JsonServiceBuilder {
 			conn.setDoOutput(true);
 			conn.setRequestMethod("PUT");
 			conn.setRequestProperty("Content-Type", type);
+			conn.setRequestProperty(TOKEN_HEADER, sessionId.replaceAll("\\n", ""));
 			OutputStream os = conn.getOutputStream();
 			os.write(encodedData.getBytes());
 			//InputStream response = conn.getInputStream();
@@ -237,7 +240,7 @@ public class JsonServiceBuilder {
 		return jsonResponse;
 	}
 
-	private String doDelete(String path, JSONObject obj, UserJsonObject userObject) {
+	private String doDelete(String path, JSONObject obj, SessionJsonObject userObject) {
 		String jsonResponse = null;
 		try {
 			String type = "application/json";
@@ -247,6 +250,7 @@ public class JsonServiceBuilder {
 			conn.setDoOutput(true);
 			conn.setRequestMethod("DELETE");
 			conn.setRequestProperty("Content-Type", type);
+			conn.setRequestProperty(TOKEN_HEADER, sessionId.replaceAll("\\n", ""));
 			OutputStream os = conn.getOutputStream();
 			os.write(encodedData.getBytes());
 			//InputStream response = conn.getInputStream();
@@ -269,7 +273,7 @@ public class JsonServiceBuilder {
 				line = reader.readLine();
 			}
 			reader.close();
-			return sb.toString();
+			return sb.toString().trim();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -280,12 +284,16 @@ public class JsonServiceBuilder {
 
 	public static void main(String[] args) {
 		JsonServiceBuilder builder = new JsonServiceBuilder("http://192.168.56.1/drupal7", "/rest");
-		//NodeListJsonObject nodeList = builder.getNodeIndex(null);
-		//System.out.println(nodeList.toString());
+		NodeListJsonObject nodeList = builder.getNodeIndex(null);
+//		System.out.println(nodeList.toString());
 		UserJsonObject userObj = new UserJsonObject();
 		userObj.setName("jon");
 		userObj.setPassword("password");
-		builder.login(userObj);
+		SessionJsonObject sessionObj = builder.login(userObj);
+//		System.out.println(sessionObj);
+		
+		NodeJsonObject nodeObj = builder.getNode(nodeList.getNodes().get(0), sessionObj);
+		System.out.println(nodeObj);
 		
 	}
 }
